@@ -23,6 +23,7 @@ public class GestorVehiculos {
         String idVehiculo = IO.in.readString("Introduzca el identificador del vehiculo");
         Integer numeroDias = IO.in.readInt("Introduzca el numero de dias de alquiler");
         IO.out.println("El precio del vehiculo con id " + idVehiculo + " por un total de "
-                + numeroDias + " es de " + handlerVehiculos.verPrecio(idVehiculo, numeroDias) + "€");
+                + numeroDias + " dias es de " + handlerVehiculos.verPrecio(idVehiculo, numeroDias)
+                + "€");
     }
 }
