@@ -104,7 +104,17 @@ public class HandlerVehiculosTest {
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void precioNoEncontrado() {
-        assertEquals(new Double(3), handlerVehiculos.verPrecio("12313", 1), 10e-5);
+    public void precioNoEncontradoTest() {
+        handlerVehiculos.verPrecio("12313", 1);
+    }
+
+    @Test(expected = MalformedElement.class)
+    public void altaIncorrectaVehiculoTest() {
+        handlerVehiculos.altaVehiculo(null);
+    }
+
+    @Test(expected = ElementAlreadyExistsException.class)
+    public void elementoUnicoTest() {
+        handlerVehiculos.altaVehiculo(new Coche("9999CCC", "Descripcion", Categoria.A));
     }
 }
