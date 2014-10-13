@@ -1,8 +1,13 @@
 package es.upm.miw.pd.gestorVehiculos;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import upm.jbb.IO;
 
 public class GestorVehiculos {
+
+    private Logger LOG = LogManager.getLogger(GestorVehiculos.class);
 
     private HandlerVehiculos handlerVehiculos;
 
@@ -12,7 +17,15 @@ public class GestorVehiculos {
 
     public void altaCoche() {
         Coche coche = (Coche) IO.in.read(Coche.class, "Introduzca un coche");
-        handlerVehiculos.altaVehiculo(coche);
+        try {
+            handlerVehiculos.altaVehiculo(coche);
+        } catch (ElementAlreadyExistsException e) {
+            IO.out.println("El vehiculo con el id introducido ya existe");
+            LOG.error(e.getMessage());
+        } catch (MalformedElement e) {
+            IO.out.println("Se debe introducir los datos del vehiculo correctamente");
+            LOG.error(e.getMessage());
+        }
     }
 
     public void altaMoto() {
@@ -32,8 +45,14 @@ public class GestorVehiculos {
     public void verPrecio() {
         String idVehiculo = IO.in.readString("Introduzca el identificador del vehiculo");
         Integer numeroDias = IO.in.readInt("Introduzca el numero de dias de alquiler");
-        IO.out.println("El precio del vehiculo con id " + idVehiculo + " por un total de "
-                + numeroDias + " dias es de " + handlerVehiculos.verPrecio(idVehiculo, numeroDias)
-                + "€");
+        try {
+            IO.out.println("El precio del vehiculo con id " + idVehiculo + " por un total de "
+                    + numeroDias + " dias es de "
+                    + handlerVehiculos.verPrecio(idVehiculo, numeroDias) + "€");
+        } catch (NoSuchElementException e) {
+            IO.out.println("El vehiculo con ese id no existe");
+            LOG.error(e.getMessage());
+        }
+
     }
 }

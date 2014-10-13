@@ -10,6 +10,12 @@ public class HandlerVehiculos implements Iterable<Vehiculo> {
     private final List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 
     public void altaVehiculo(Vehiculo vehiculo) {
+        if (vehiculos.contains(vehiculo)) {
+            throw new ElementAlreadyExistsException("Ya existe un vehiculo con ese id");
+        } else if (vehiculo == null || vehiculo.getDescripcion() == null
+                || vehiculo.getId() == null) {
+            throw new MalformedElement("Debe introducir los datos del vehiculo");
+        }
         vehiculos.add(vehiculo);
     }
 
