@@ -10,7 +10,7 @@
 	</appenders>
 	<loggers>
 		<logger name="es.upm.miw.pd" level="info" />
-		<root level="error">
+		<root level="info">
             <appender-ref ref="Console" />
             <appender-ref ref="File" />
 		</root>

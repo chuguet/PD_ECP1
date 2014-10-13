@@ -3,7 +3,6 @@ package es.upm.miw.pd.gestorVehiculos;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class HandlerVehiculos implements Iterable<Vehiculo> {
 
@@ -12,8 +11,7 @@ public class HandlerVehiculos implements Iterable<Vehiculo> {
     public void altaVehiculo(Vehiculo vehiculo) {
         if (vehiculos.contains(vehiculo)) {
             throw new ElementAlreadyExistsException("Ya existe un vehiculo con ese id");
-        } else if (vehiculo == null || vehiculo.getDescripcion() == null
-                || vehiculo.getId() == null) {
+        } else if (vehiculo == null || !vehiculo.esVehiculoCorrecto()) {
             throw new MalformedElement("Debe introducir los datos del vehiculo");
         }
         vehiculos.add(vehiculo);

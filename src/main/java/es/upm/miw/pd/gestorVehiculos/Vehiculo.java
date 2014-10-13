@@ -60,4 +60,9 @@ public abstract class Vehiculo {
                 + this.getDescripcion();
     }
 
+    public Boolean esVehiculoCorrecto() {
+        return this.getId() != null && !this.getId().isEmpty() && this.getDescripcion() != null
+                && !this.getDescripcion().isEmpty();
+    }
+
 }

@@ -15,10 +15,9 @@ public class GestorVehiculos {
         this.handlerVehiculos = new HandlerVehiculos();
     }
 
-    public void altaCoche() {
-        Coche coche = (Coche) IO.in.read(Coche.class, "Introduzca un coche");
+    private void altaVehiculo(Vehiculo vehiculo) {
         try {
-            handlerVehiculos.altaVehiculo(coche);
+            handlerVehiculos.altaVehiculo(vehiculo);
         } catch (ElementAlreadyExistsException e) {
             IO.out.println("El vehiculo con el id introducido ya existe");
             LOG.error(e.getMessage());
@@ -28,14 +27,20 @@ public class GestorVehiculos {
         }
     }
 
+    public void altaCoche() {
+        Coche coche = (Coche) IO.in.read(Coche.class, "Introduzca un coche");
+        this.altaVehiculo(coche);
+
+    }
+
     public void altaMoto() {
         Moto moto = (Moto) IO.in.read(Moto.class, "Introduzca una moto");
-        handlerVehiculos.altaVehiculo(moto);
+        this.altaVehiculo(moto);
     }
 
     public void altaBicicleta() {
         Bicicleta bicicleta = (Bicicleta) IO.in.read(Bicicleta.class, "Introduzca una bicicleta");
-        handlerVehiculos.altaVehiculo(bicicleta);
+        this.altaVehiculo(bicicleta);
     }
 
     public void listarVehiculos() {
