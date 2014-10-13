@@ -10,9 +10,19 @@ public class GestorVehiculos {
         this.handlerVehiculos = new HandlerVehiculos();
     }
 
-    public void altaVehiculo() {
-        Vehiculo vehiculo = (Vehiculo) IO.in.read(Vehiculo.class, "Introduzca un vehiculo");
-        handlerVehiculos.altaVehiculo(vehiculo);
+    public void altaCoche() {
+        Coche coche = (Coche) IO.in.read(Coche.class, "Introduzca un coche");
+        handlerVehiculos.altaVehiculo(coche);
+    }
+
+    public void altaMoto() {
+        Moto moto = (Moto) IO.in.read(Moto.class, "Introduzca una moto");
+        handlerVehiculos.altaVehiculo(moto);
+    }
+
+    public void altaBicicleta() {
+        Bicicleta bicicleta = (Bicicleta) IO.in.read(Bicicleta.class, "Introduzca una bicicleta");
+        handlerVehiculos.altaVehiculo(bicicleta);
     }
 
     public void listarVehiculos() {
