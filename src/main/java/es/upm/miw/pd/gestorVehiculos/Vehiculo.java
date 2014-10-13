@@ -31,6 +31,8 @@ public abstract class Vehiculo {
 
     @Override
     public String toString() {
-        return null;
+        return this.getClass().getSimpleName() + " >> ID: " + this.getId() + " DESCRIPCION: "
+                + this.getDescripcion();
     }
+
 }
