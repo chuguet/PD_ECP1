@@ -16,13 +16,17 @@ public class HandlerVehiculos implements Iterable<Vehiculo> {
         return null;
     }
 
-    public Integer verPrecio(String idVehiculo, Integer diasAlquiler) {
+    public Double verPrecio(String idVehiculo, Integer diasAlquiler) {
         return null;
     }
 
     @Override
     public Iterator<Vehiculo> iterator() {
         return null;// this.vehiculos.iterator();
+    }
+
+    public Integer numeroVehiculos() {
+        return null;
     }
 
 }
