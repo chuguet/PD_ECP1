@@ -3,6 +3,8 @@ package es.upm.miw.pd.gestorVehiculos;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +24,7 @@ public class HandlerVehiculosTest {
 
     @Test
     public void altaVehiculosTest() {
-        assertEquals(new Integer(4), handlerVehiculos.numeroVehiculos());
+        assertEquals(new Integer(5), handlerVehiculos.numeroVehiculos());
         int numCoches = 0;
         int numMotos = 0;
         int numBicicletas = 0;
@@ -38,8 +40,8 @@ public class HandlerVehiculosTest {
                 fail("Vehiculo no reconocido");
             }
         }
-        assertEquals(1, numCoches);
-        assertEquals(2, numMotos);
+        assertEquals(3, numCoches);
+        assertEquals(1, numMotos);
         assertEquals(1, numBicicletas);
 
     }
@@ -99,5 +101,10 @@ public class HandlerVehiculosTest {
         assertEquals(new Double(3), handlerVehiculos.verPrecio("0000BBB", 1), 10e-5);
         assertEquals(new Double(6), handlerVehiculos.verPrecio("0000BBB", 2), 10e-5);
         assertEquals(new Double(8), handlerVehiculos.verPrecio("0000BBB", 3), 10e-5);
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void precioNoEncontrado() {
+        assertEquals(new Double(3), handlerVehiculos.verPrecio("12313", 1), 10e-5);
     }
 }
