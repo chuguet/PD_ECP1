@@ -2,6 +2,8 @@ package es.upm.miw.pd.gestorVehiculos;
 
 public abstract class Vehiculo {
 
+    protected static final Integer MIN_DIAS_ALQUILER = 1;
+
     private String descripcion;
 
     private String id;
