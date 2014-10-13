@@ -57,6 +57,9 @@ public class GestorVehiculos {
         } catch (NoSuchElementException e) {
             IO.out.println("El vehiculo con ese id no existe");
             LOG.error(e.getMessage());
+        } catch (MalformedElement e) {
+            IO.out.println("El numero de dias de alquiler tiene que ser mayor que 0");
+            LOG.error(e.getMessage());
         }
 
     }

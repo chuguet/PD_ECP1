@@ -101,9 +101,29 @@ public class HandlerVehiculosTest {
         assertEquals(new Double(8), handlerVehiculos.verPrecio("0000BBB", 3), 10e-5);
     }
 
+    @Test(expected = MalformedElement.class)
+    public void diasAlquilerIncorrecto() {
+        handlerVehiculos.verPrecio("0000BBB", -51);
+    }
+
     @Test(expected = NoSuchElementException.class)
     public void precioNoEncontradoTest() {
         handlerVehiculos.verPrecio("12313", 1);
+    }
+
+    @Test(expected = MalformedElement.class)
+    public void altaIncorrectaVehiculoNullTest() {
+        handlerVehiculos.altaVehiculo(null);
+    }
+
+    @Test(expected = MalformedElement.class)
+    public void altaIncorrectaVehiculoParametersNullTest() {
+        handlerVehiculos.altaVehiculo(new Bicicleta(null, null));
+    }
+
+    @Test(expected = MalformedElement.class)
+    public void altaIncorrectaVehiculoParametersEmptyTest() {
+        handlerVehiculos.altaVehiculo(new Moto("", ""));
     }
 
     @Test(expected = MalformedElement.class)
