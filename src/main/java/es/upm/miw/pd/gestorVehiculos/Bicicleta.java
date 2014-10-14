@@ -14,7 +14,7 @@ public class Bicicleta extends Vehiculo {
 
     private static final Double PORCENTAJE_PAGO_PRIMER_RANGO = 1d;
 
-    private static final Double PORCENTAJE_PAGO_SEGUNDO_RANGO = 0.667d;
+    private static final Double PORCENTAJE_PAGO_SEGUNDO_RANGO = 0.6666666666666666d;
 
     public Bicicleta(String id, String descripcion) {
         super(id, descripcion);

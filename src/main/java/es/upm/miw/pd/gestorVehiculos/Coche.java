@@ -22,9 +22,9 @@ public class Coche extends Vehiculo {
 
     private static final Double PORCENTAJE_PAGO_PRIMER_RANGO = 1d;
 
-    private static final Double PORCENTAJE_PAGO_SEGUNDO_RANGO = 0.875d;
+    private static final Double PORCENTAJE_PAGO_SEGUNDO_RANGO = 0.8d;
 
-    private static final Double PORCENTAJE_PAGO_TERCER_RANGO = 0.875d;
+    private static final Double PORCENTAJE_PAGO_TERCER_RANGO = 0.5d;
 
     public Coche(String id, String descripcion, Categoria categoria) {
         super(id, descripcion);

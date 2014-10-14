@@ -34,14 +34,13 @@ public class HandlerRangoPagos {
         Double precioFinal = 0d;
         for (RangoPago rangoPago : rangoPagos) {
             if (rangoPago.getIntervalo().below(diasAlquiler)) {
-                precioFinal += precioFinal
+                precioFinal = precioFinal
                         + (rangoPago.getPorcentajeDePago() * this.getPrecioBase() * rangoPago
                                 .getIntervalo().evaluate(diasAlquiler));
-                break;
-            } else {
-                precioFinal += precioFinal
+            } else if (rangoPago.getIntervalo().esMenor(diasAlquiler)) {
+                precioFinal = precioFinal
                         + (rangoPago.getPorcentajeDePago() * this.getPrecioBase() * rangoPago
-                                .getIntervalo().getMax());
+                                .getIntervalo().evaluate());
             }
         }
         return precioFinal;

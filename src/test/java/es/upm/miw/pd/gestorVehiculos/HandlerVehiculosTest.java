@@ -67,7 +67,7 @@ public class HandlerVehiculosTest {
 
     @Test
     public void precioCocheB() {
-        assertEquals(new Double(20), handlerVehiculos.verPrecio("8888CCC", 2), 10e-5);
+        assertEquals(new Double(30), handlerVehiculos.verPrecio("8888CCC", 2), 10e-5);
         assertEquals(new Double(45), handlerVehiculos.verPrecio("8888CCC", 3), 10e-5);
         assertEquals(new Double(57), handlerVehiculos.verPrecio("8888CCC", 4), 10e-5);
 

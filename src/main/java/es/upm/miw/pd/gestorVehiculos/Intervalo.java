@@ -35,4 +35,12 @@ public class Intervalo {
         return diasAlquiler - this.min + 1;
     }
 
+    public Integer evaluate() {
+        return this.max - this.min + 1;
+    }
+
+    public Boolean esMenor(Integer diasAlquiler) {
+        return diasAlquiler > this.max;
+    }
+
 }
