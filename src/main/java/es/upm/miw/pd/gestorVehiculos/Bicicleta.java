@@ -23,7 +23,8 @@ public class Bicicleta extends Vehiculo {
         super(id, descripcion);
     }
 
-    private List<RangoPago> getRangoPagos() {
+    @Override
+    protected List<RangoPago> getRangoPagos() {
         List<RangoPago> rangoPagos = new ArrayList<RangoPago>();
         RangoPago primerRango = new RangoPago(
                 new Intervalo(COMIENZO_PRIMER_RANGO, FIN_PRIMER_RANGO),
@@ -40,7 +41,7 @@ public class Bicicleta extends Vehiculo {
         if (diasAlquiler < Bicicleta.COMIENZO_PRIMER_RANGO) {
             throw new MalformedElement("El minimo de dias para alquilar es de 1");
         }
-        return super.getPrecioRangos(diasAlquiler, Bicicleta.PRECIO_BASE, this.getRangoPagos());
+        return super.getPrecioRangos(diasAlquiler, Bicicleta.PRECIO_BASE);
     }
 
 }

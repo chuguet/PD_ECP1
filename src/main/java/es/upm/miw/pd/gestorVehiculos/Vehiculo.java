@@ -42,11 +42,13 @@ public abstract class Vehiculo {
 
     protected abstract Double getPrecio(Integer diasAlquiler);
 
-    protected Double getPrecioRangos(Integer diasAlquiler, Double precioBase,
-            List<RangoPago> rangoPagos) {
-        HandlerRangoPagos handlerRangoPagos = new HandlerRangoPagos(precioBase, rangoPagos);
+    protected Double getPrecioRangos(Integer diasAlquiler, Double precioBase) {
+        HandlerRangoPagos handlerRangoPagos = new HandlerRangoPagos(precioBase,
+                this.getRangoPagos());
         return handlerRangoPagos.getPrecioFinal(diasAlquiler);
     }
+
+    protected abstract List<RangoPago> getRangoPagos();
 
     @Override
     public int hashCode() {

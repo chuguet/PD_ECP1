@@ -44,7 +44,8 @@ public class Coche extends Vehiculo {
         this.categoria = categoria;
     }
 
-    private List<RangoPago> getRangoPagos() {
+    @Override
+    protected List<RangoPago> getRangoPagos() {
         List<RangoPago> rangoPagos = new ArrayList<RangoPago>();
         RangoPago primerRango = new RangoPago(
                 new Intervalo(COMIENZO_PRIMER_RANGO, FIN_PRIMER_RANGO),
@@ -67,11 +68,11 @@ public class Coche extends Vehiculo {
             throw new MalformedElement("El minimo de dias para alquilar es de 1");
         }
         if (this.categoria.equals(Categoria.A)) {
-            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_A, this.getRangoPagos());
+            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_A);
         } else if (this.categoria.equals(Categoria.B)) {
-            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_B, this.getRangoPagos());
+            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_B);
         } else if (this.categoria.equals(Categoria.C)) {
-            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_C, this.getRangoPagos());
+            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_C);
         }
         return precio;
     }
