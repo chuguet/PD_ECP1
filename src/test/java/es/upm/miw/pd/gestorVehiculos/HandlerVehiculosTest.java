@@ -46,9 +46,9 @@ public class HandlerVehiculosTest {
 
     @Test
     public void listarVehiculosTest() {
-        assertEquals("Coche >> ID: 7777CCC DESCRIPCION: Mi coche A\n"
-                + "Coche >> ID: 8888CCC DESCRIPCION: Mi coche B\n"
-                + "Coche >> ID: 9999CCC DESCRIPCION: Mi coche C\n"
+        assertEquals("Coche >> ID: 7777CCC DESCRIPCION: Mi coche A CATEGORIA: A\n"
+                + "Coche >> ID: 8888CCC DESCRIPCION: Mi coche B CATEGORIA: B\n"
+                + "Coche >> ID: 9999CCC DESCRIPCION: Mi coche C CATEGORIA: C\n"
                 + "Moto >> ID: 1111MMM DESCRIPCION: Mi moto\n"
                 + "Bicicleta >> ID: 0000BBB DESCRIPCION: Mi bici\n",
                 handlerVehiculos.listarVehiculos());

@@ -75,4 +75,11 @@ public class Coche extends Vehiculo {
         }
         return precio;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " >> ID: " + this.getId() + " DESCRIPCION: "
+                + this.getDescripcion() + " CATEGORIA: " + this.categoria.name();
+    }
+
 }
