@@ -40,6 +40,46 @@ public abstract class Vehiculo {
 
     protected abstract Double getPrecio(Integer diasAlquiler);
 
+    protected Double getPrecioDosRangos(Integer diasAlquiler, Double precioBase) {
+        RangoPago primerRango = new RangoPago(new Intervalo(this.getComienzoPrimerRango(),
+                this.getFinPrimerRango()), this.getPorcentajePagoPrimerRango());
+        RangoPago segundoRango = new RangoPago(new Intervalo(this.getComienzoSegundoRango(),
+                this.getFinSegundoRango()), this.getPorcentajePagoSegundoRango());
+        HandlerRangoPagos handlerRangoPagos = new HandlerRangoPagos(precioBase, primerRango,
+                segundoRango);
+        return handlerRangoPagos.getPrecioFinal(diasAlquiler);
+    }
+
+    protected Double getPrecioTresRangos(Integer diasAlquiler, Double precioBase) {
+        RangoPago primerRango = new RangoPago(new Intervalo(this.getComienzoPrimerRango(),
+                this.getFinPrimerRango()), this.getPorcentajePagoPrimerRango());
+        RangoPago segundoRango = new RangoPago(new Intervalo(this.getComienzoSegundoRango(),
+                this.getFinSegundoRango()), this.getPorcentajePagoSegundoRango());
+        RangoPago tercerRango = new RangoPago(new Intervalo(this.getComienzoTercerRango(),
+                this.getFinTercerRango()), this.getPorcentajePagoTercerRango());
+        HandlerRangoPagos handlerRangoPagos = new HandlerRangoPagos(precioBase, primerRango,
+                segundoRango, tercerRango);
+        return handlerRangoPagos.getPrecioFinal(diasAlquiler);
+    }
+
+    protected abstract Double getPorcentajePagoPrimerRango();
+
+    protected abstract Double getPorcentajePagoSegundoRango();
+
+    protected abstract Double getPorcentajePagoTercerRango();
+
+    protected abstract Integer getFinPrimerRango();
+
+    protected abstract Integer getFinSegundoRango();
+
+    protected abstract Integer getFinTercerRango();
+
+    protected abstract Integer getComienzoPrimerRango();
+
+    protected abstract Integer getComienzoSegundoRango();
+
+    protected abstract Integer getComienzoTercerRango();
+
     @Override
     public int hashCode() {
         final int prime = 31;

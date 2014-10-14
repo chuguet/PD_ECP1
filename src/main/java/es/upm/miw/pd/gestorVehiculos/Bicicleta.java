@@ -2,29 +2,75 @@ package es.upm.miw.pd.gestorVehiculos;
 
 public class Bicicleta extends Vehiculo {
 
-    private static final Integer DIAS_HASTA_SEGUNDO_TRAMO_ALQUILER = 2;
+    private static final Integer COMIENZO_PRIMER_RANGO = 1;
 
-    private static final Double PRECIO_PRIMER_TRAMO = 3d;
+    private static final Integer FIN_PRIMER_RANGO = 2;
 
-    private static final Double PRECIO_SEGUNDO_TRAMO = 2d;
+    private static final Integer COMIENZO_SEGUNDO_RANGO = 3;
+
+    private static final Integer FIN_SEGUNDO_RANGO = Integer.MAX_VALUE;
+
+    private static final Double PRECIO_BASE = 3d;
+
+    private static final Double PORCENTAJE_PAGO_PRIMER_RANGO = 1d;
+
+    private static final Double PORCENTAJE_PAGO_SEGUNDO_RANGO = 0.667d;
 
     public Bicicleta(String id, String descripcion) {
         super(id, descripcion);
     }
 
     @Override
+    protected Double getPorcentajePagoPrimerRango() {
+        return Bicicleta.PORCENTAJE_PAGO_PRIMER_RANGO;
+    }
+
+    @Override
+    protected Double getPorcentajePagoSegundoRango() {
+        return Bicicleta.PORCENTAJE_PAGO_SEGUNDO_RANGO;
+    }
+
+    @Override
+    protected Double getPorcentajePagoTercerRango() {
+        return null;
+    }
+
+    @Override
+    protected Integer getFinPrimerRango() {
+        return Bicicleta.FIN_PRIMER_RANGO;
+    }
+
+    @Override
+    protected Integer getFinSegundoRango() {
+        return Bicicleta.FIN_SEGUNDO_RANGO;
+    }
+
+    @Override
+    protected Integer getFinTercerRango() {
+        return null;
+    }
+
+    @Override
+    protected Integer getComienzoPrimerRango() {
+        return Bicicleta.COMIENZO_PRIMER_RANGO;
+    }
+
+    @Override
+    protected Integer getComienzoSegundoRango() {
+        return Bicicleta.COMIENZO_SEGUNDO_RANGO;
+    }
+
+    @Override
+    protected Integer getComienzoTercerRango() {
+        return null;
+    }
+
+    @Override
     protected Double getPrecio(Integer diasAlquiler) {
-        Double precio = null;
-        if (diasAlquiler < MIN_DIAS_ALQUILER) {
-            throw new MalformedElement("Los dias de alquiler tienen que ser mayores que 0");
-        } else if (diasAlquiler <= DIAS_HASTA_SEGUNDO_TRAMO_ALQUILER
-                && diasAlquiler >= MIN_DIAS_ALQUILER) {
-            precio = PRECIO_PRIMER_TRAMO * diasAlquiler;
-        } else {
-            precio = (DIAS_HASTA_SEGUNDO_TRAMO_ALQUILER * PRECIO_PRIMER_TRAMO)
-                    + ((diasAlquiler - DIAS_HASTA_SEGUNDO_TRAMO_ALQUILER) * PRECIO_SEGUNDO_TRAMO);
+        if (diasAlquiler < Bicicleta.COMIENZO_PRIMER_RANGO) {
+            throw new MalformedElement("El minimo de dias para alquilar es de 1");
         }
-        return precio;
+        return super.getPrecioDosRangos(diasAlquiler, Bicicleta.PRECIO_BASE);
     }
 
 }
