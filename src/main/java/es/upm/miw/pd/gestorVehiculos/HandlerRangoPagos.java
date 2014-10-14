@@ -1,6 +1,5 @@
 package es.upm.miw.pd.gestorVehiculos;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class HandlerRangoPagos {
@@ -9,9 +8,9 @@ public class HandlerRangoPagos {
 
     private List<RangoPago> rangoPagos;
 
-    public HandlerRangoPagos(Double precioBase, RangoPago... rangoPagos) {
+    public HandlerRangoPagos(Double precioBase, List<RangoPago> rangoPagos) {
         this.precioBase = precioBase;
-        this.rangoPagos = Arrays.asList(rangoPagos);
+        this.rangoPagos = rangoPagos;
     }
 
     public Double getPrecioBase() {
@@ -33,7 +32,7 @@ public class HandlerRangoPagos {
     public Double getPrecioFinal(Integer diasAlquiler) {
         Double precioFinal = 0d;
         for (RangoPago rangoPago : rangoPagos) {
-            if (rangoPago.getIntervalo().below(diasAlquiler)) {
+            if (rangoPago.getIntervalo().contiene(diasAlquiler)) {
                 precioFinal = precioFinal
                         + (rangoPago.getPorcentajeDePago() * this.getPrecioBase() * rangoPago
                                 .getIntervalo().evaluate(diasAlquiler));

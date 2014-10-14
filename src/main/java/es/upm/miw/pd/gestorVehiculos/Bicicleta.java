@@ -1,5 +1,8 @@
 package es.upm.miw.pd.gestorVehiculos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bicicleta extends Vehiculo {
 
     private static final Integer COMIENZO_PRIMER_RANGO = 1;
@@ -20,49 +23,16 @@ public class Bicicleta extends Vehiculo {
         super(id, descripcion);
     }
 
-    @Override
-    protected Double getPorcentajePagoPrimerRango() {
-        return Bicicleta.PORCENTAJE_PAGO_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Double getPorcentajePagoSegundoRango() {
-        return Bicicleta.PORCENTAJE_PAGO_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Double getPorcentajePagoTercerRango() {
-        return null;
-    }
-
-    @Override
-    protected Integer getFinPrimerRango() {
-        return Bicicleta.FIN_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Integer getFinSegundoRango() {
-        return Bicicleta.FIN_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Integer getFinTercerRango() {
-        return null;
-    }
-
-    @Override
-    protected Integer getComienzoPrimerRango() {
-        return Bicicleta.COMIENZO_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Integer getComienzoSegundoRango() {
-        return Bicicleta.COMIENZO_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Integer getComienzoTercerRango() {
-        return null;
+    private List<RangoPago> getRangoPagos() {
+        List<RangoPago> rangoPagos = new ArrayList<RangoPago>();
+        RangoPago primerRango = new RangoPago(
+                new Intervalo(COMIENZO_PRIMER_RANGO, FIN_PRIMER_RANGO),
+                PORCENTAJE_PAGO_PRIMER_RANGO);
+        rangoPagos.add(primerRango);
+        RangoPago segundoRango = new RangoPago(new Intervalo(COMIENZO_SEGUNDO_RANGO,
+                FIN_SEGUNDO_RANGO), PORCENTAJE_PAGO_SEGUNDO_RANGO);
+        rangoPagos.add(segundoRango);
+        return rangoPagos;
     }
 
     @Override
@@ -70,7 +40,7 @@ public class Bicicleta extends Vehiculo {
         if (diasAlquiler < Bicicleta.COMIENZO_PRIMER_RANGO) {
             throw new MalformedElement("El minimo de dias para alquilar es de 1");
         }
-        return super.getPrecioDosRangos(diasAlquiler, Bicicleta.PRECIO_BASE);
+        return super.getPrecioRangos(diasAlquiler, Bicicleta.PRECIO_BASE, this.getRangoPagos());
     }
 
 }

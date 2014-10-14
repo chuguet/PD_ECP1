@@ -1,5 +1,8 @@
 package es.upm.miw.pd.gestorVehiculos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Moto extends Vehiculo {
 
     private static final Integer COMIENZO_PRIMER_RANGO = 1;
@@ -21,55 +24,22 @@ public class Moto extends Vehiculo {
     }
 
     @Override
-    protected Double getPorcentajePagoPrimerRango() {
-        return Moto.PORCENTAJE_PAGO_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Double getPorcentajePagoSegundoRango() {
-        return Moto.PORCENTAJE_PAGO_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Double getPorcentajePagoTercerRango() {
-        return null;
-    }
-
-    @Override
-    protected Integer getFinPrimerRango() {
-        return Moto.FIN_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Integer getFinSegundoRango() {
-        return Moto.FIN_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Integer getFinTercerRango() {
-        return null;
-    }
-
-    @Override
-    protected Integer getComienzoPrimerRango() {
-        return Moto.COMIENZO_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Integer getComienzoSegundoRango() {
-        return Moto.COMIENZO_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Integer getComienzoTercerRango() {
-        return null;
-    }
-
-    @Override
     protected Double getPrecio(Integer diasAlquiler) {
         if (diasAlquiler < Moto.COMIENZO_PRIMER_RANGO) {
             throw new MalformedElement("El minimo de dias para alquilar es de 1");
         }
-        return super.getPrecioDosRangos(diasAlquiler, Moto.PRECIO_BASE);
+        return super.getPrecioRangos(diasAlquiler, Moto.PRECIO_BASE, this.getRangoPagos());
+    }
+
+    private List<RangoPago> getRangoPagos() {
+        List<RangoPago> rangoPagos = new ArrayList<RangoPago>();
+        RangoPago primerRango = new RangoPago(
+                new Intervalo(COMIENZO_PRIMER_RANGO, FIN_PRIMER_RANGO),
+                PORCENTAJE_PAGO_PRIMER_RANGO);
+        rangoPagos.add(primerRango);
+        RangoPago segundoRango = new RangoPago(new Intervalo(COMIENZO_SEGUNDO_RANGO,
+                FIN_SEGUNDO_RANGO), PORCENTAJE_PAGO_SEGUNDO_RANGO);
+        rangoPagos.add(segundoRango);
+        return rangoPagos;
     }
 }

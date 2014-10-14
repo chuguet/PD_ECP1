@@ -11,7 +11,7 @@ public class Intervalo {
         this.max = max;
     }
 
-    public Boolean below(Integer number) {
+    public Boolean contiene(Integer number) {
         return number <= this.max && number >= this.min;
     }
 

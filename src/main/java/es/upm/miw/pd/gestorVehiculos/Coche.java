@@ -1,5 +1,8 @@
 package es.upm.miw.pd.gestorVehiculos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coche extends Vehiculo {
 
     private static final Integer COMIENZO_PRIMER_RANGO = 1;
@@ -41,49 +44,20 @@ public class Coche extends Vehiculo {
         this.categoria = categoria;
     }
 
-    @Override
-    protected Double getPorcentajePagoPrimerRango() {
-        return Coche.PORCENTAJE_PAGO_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Double getPorcentajePagoSegundoRango() {
-        return Coche.PORCENTAJE_PAGO_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Double getPorcentajePagoTercerRango() {
-        return Coche.PORCENTAJE_PAGO_TERCER_RANGO;
-    }
-
-    @Override
-    protected Integer getFinPrimerRango() {
-        return Coche.FIN_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Integer getFinSegundoRango() {
-        return Coche.FIN_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Integer getFinTercerRango() {
-        return Coche.FIN_TERCER_RANGO;
-    }
-
-    @Override
-    protected Integer getComienzoPrimerRango() {
-        return Coche.COMIENZO_PRIMER_RANGO;
-    }
-
-    @Override
-    protected Integer getComienzoSegundoRango() {
-        return Coche.COMIENZO_SEGUNDO_RANGO;
-    }
-
-    @Override
-    protected Integer getComienzoTercerRango() {
-        return Coche.COMIENZO_TERCER_RANGO;
+    private List<RangoPago> getRangoPagos() {
+        List<RangoPago> rangoPagos = new ArrayList<RangoPago>();
+        RangoPago primerRango = new RangoPago(
+                new Intervalo(COMIENZO_PRIMER_RANGO, FIN_PRIMER_RANGO),
+                PORCENTAJE_PAGO_PRIMER_RANGO);
+        rangoPagos.add(primerRango);
+        RangoPago segundoRango = new RangoPago(new Intervalo(COMIENZO_SEGUNDO_RANGO,
+                FIN_SEGUNDO_RANGO), PORCENTAJE_PAGO_SEGUNDO_RANGO);
+        rangoPagos.add(segundoRango);
+        RangoPago tercerRango = new RangoPago(
+                new Intervalo(COMIENZO_TERCER_RANGO, FIN_TERCER_RANGO),
+                PORCENTAJE_PAGO_TERCER_RANGO);
+        rangoPagos.add(tercerRango);
+        return rangoPagos;
     }
 
     @Override
@@ -93,11 +67,11 @@ public class Coche extends Vehiculo {
             throw new MalformedElement("El minimo de dias para alquilar es de 1");
         }
         if (this.categoria.equals(Categoria.A)) {
-            precio = super.getPrecioTresRangos(diasAlquiler, Coche.PRECIO_BASE_A);
+            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_A, this.getRangoPagos());
         } else if (this.categoria.equals(Categoria.B)) {
-            precio = super.getPrecioTresRangos(diasAlquiler, Coche.PRECIO_BASE_B);
+            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_B, this.getRangoPagos());
         } else if (this.categoria.equals(Categoria.C)) {
-            precio = super.getPrecioTresRangos(diasAlquiler, Coche.PRECIO_BASE_C);
+            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_C, this.getRangoPagos());
         }
         return precio;
     }
