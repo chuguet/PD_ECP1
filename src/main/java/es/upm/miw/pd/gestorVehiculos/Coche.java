@@ -64,15 +64,12 @@ public class Coche extends Vehiculo {
     @Override
     protected Double getPrecio(Integer diasAlquiler) {
         Double precio = null;
-        if (diasAlquiler < Coche.COMIENZO_PRIMER_RANGO) {
-            throw new MalformedElement("El minimo de dias para alquilar es de 1");
-        }
         if (this.categoria.equals(Categoria.A)) {
-            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_A);
+            precio = super.getPrecioRangos(diasAlquiler, PRECIO_BASE_A);
         } else if (this.categoria.equals(Categoria.B)) {
-            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_B);
+            precio = super.getPrecioRangos(diasAlquiler, PRECIO_BASE_B);
         } else if (this.categoria.equals(Categoria.C)) {
-            precio = super.getPrecioRangos(diasAlquiler, Coche.PRECIO_BASE_C);
+            precio = super.getPrecioRangos(diasAlquiler, PRECIO_BASE_C);
         }
         return precio;
     }

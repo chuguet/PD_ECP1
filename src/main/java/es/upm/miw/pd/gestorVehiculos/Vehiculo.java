@@ -43,6 +43,9 @@ public abstract class Vehiculo {
     protected abstract Double getPrecio(Integer diasAlquiler);
 
     protected Double getPrecioRangos(Integer diasAlquiler, Double precioBase) {
+        if (diasAlquiler < MIN_DIAS_ALQUILER) {
+            throw new MalformedElement("El minimo de dias para alquilar es de 1");
+        }
         HandlerRangoPagos handlerRangoPagos = new HandlerRangoPagos(precioBase,
                 this.getRangoPagos());
         return handlerRangoPagos.getPrecioFinal(diasAlquiler);

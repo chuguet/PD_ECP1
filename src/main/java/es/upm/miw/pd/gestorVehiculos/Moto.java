@@ -25,10 +25,7 @@ public class Moto extends Vehiculo {
 
     @Override
     protected Double getPrecio(Integer diasAlquiler) {
-        if (diasAlquiler < Moto.COMIENZO_PRIMER_RANGO) {
-            throw new MalformedElement("El minimo de dias para alquilar es de 1");
-        }
-        return super.getPrecioRangos(diasAlquiler, Moto.PRECIO_BASE);
+        return super.getPrecioRangos(diasAlquiler, PRECIO_BASE);
     }
 
     @Override
