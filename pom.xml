@@ -47,10 +47,5 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>es.upm.miw</groupId>
-			<artifactId>pd.io</artifactId>
-			<version>${io.version}</version>
-		</dependency>
 	</dependencies>
 </project>
